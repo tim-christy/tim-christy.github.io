@@ -20,7 +20,7 @@ timezone: America/Chicago
 
 title: Data Blog   # the main title
 
-tagline: A blog about data, tech, and other things  # it will display as the sub-title
+tagline: Data, tech, and other things  # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
 
