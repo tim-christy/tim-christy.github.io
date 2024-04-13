@@ -13,7 +13,7 @@ img_path: /assets/img/setup/data_pipeline/2024-04-12/
 
 Below is the initial structure that's been created to house the data pipeline.
 
-![initial project structure](initial_structure.png)
+![initial project structure](initial-structure.png)
 
 That is a data_pipelines/ folder with an nws/ and pgdata/ folder inside.
 The nws folder is intended to house Python code that will collect data
