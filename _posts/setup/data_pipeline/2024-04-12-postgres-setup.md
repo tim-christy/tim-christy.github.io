@@ -20,9 +20,6 @@ from the postgres container. This is needed because containers do not persist
 data after they are stopped, so we'll lose all the data we put into our
 database unless we make a volume for it.
 
-Also the -p flag tells the mkdir command to create all folders/subfolders
-needed to make the path exist.
-
 Now we'll create a network that this container will use. This way when the
 project grows and we pull in more containers, they can all communicate with
 each other over this network.
