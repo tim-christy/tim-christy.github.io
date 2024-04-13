@@ -1,6 +1,5 @@
 ---
-title: Data Pipeline Part 1
-subtitle: Setting up a postgres docker container
+title: Setting up a postgres docker container
 date: 2024-04-12 13:00:00 -0500
 categories: [setup, data_pipeline]
 tags: [setup, docker, dbt, postgres]
@@ -11,9 +10,10 @@ img_path: /assets/img/setup/data_pipeline/2024-04-12/
 - [Docker installed](https://www.docker.com/products/docker-desktop/)
 - [Docker Hub account created](https://www.docker.com/products/docker-hub/)
 
+
 Below is the initial structure that's been created to house the data pipeline.
 
-![initial project structure](initial-structure.png)
+![initial project structure](initial-structure.png){: width: 20% height: 10% }
 
 That is a data_pipelines/ folder with an nws/ and pgdata/ folder inside.
 The nws folder is intended to house Python code that will collect data
