@@ -11,27 +11,25 @@ img_path: /assets/img/setup/data_pipeline/2024-04-12/
 - [Docker Hub account created](https://www.docker.com/products/docker-hub/)
 
 
-Below is the initial structure that's been created to house the data pipeline.
 
-![initial project structure](initial-structure.png){: width: 10% height: 5% }
+<!-- ![initial project structure](initial-structure.png){: width: 10% height: 5% } -->
 
-That is a data_pipelines/ folder with an nws/ and pgdata/ folder inside.
-The nws folder is intended to house Python code that will collect data
-from the [National Weather Service
-api](https://www.weather.gov/documentation/services-web-api) later down the
-road. The pgdata folder will be used to store data from the postgres container.
-This is needed because containers do not persist data after they are stopped,
-so we'll lose all the data we put into our database unless we make a volume for
-it.
+First, we'll create a project folder with a pgdata folder inside it like so
+```bash
+mkdir -p data_pipelines/pgdata/
+```
+Above, I've named my project folder "data_pipelines". The pgdata folder will be
+used to store data from the postgres container. This is needed because
+containers do not persist data after they are stopped, so we'll lose all the
+data we put into our database unless we make a volume for it.
 
-Note:
-In a nutshell, "volume" is what Docker calls it when you link a folder
-between your local computer and a container. So anything you do to that folder
-will be reflected in both the container and your local machine.
+Quick note on the -p option in mkdir:
+The -p flag tells the mkdir command to create all folders/subfolders needed to
+make the path exist.
 
-First, we'll create a network that this data pipeline will use. This way when
-we pull in more containers, they can all communicate with each other over this
-network.
+Now we'll create a network that this container will use. This way when the
+project grows and we pull in more containers, they can all communicate with
+each other over this network.
 
 ```bash
 docker network create networkdp
@@ -44,7 +42,8 @@ been created via
 docker network ls
 ```
 
-Navigate to the pgdata folder and run the following command:
+Now navigate to the pgdata folder and run the following command. An explanation
+of what this all means follows after it.
 ```bash
 docker run -d \
 --name postgres \
@@ -56,7 +55,7 @@ postgres
 ```
 
 docker run
-The docker run command is used to create a new container.
+The docker run command is used to create and start a new container.
 
 -d
 Starts the container in detached mode. This way we keep our terminal rather than
@@ -69,11 +68,11 @@ This is how we name the container. Here we've named it postgres.
 The -e option sets up environment variables in the container. Postgres requires
 that there at least be a password variable set up, so we do that here. The
 "postgres" password is fine for now, but there's a better way to handle
-sensitive data altogether that will be covered later in these posts.
+sensitive data altogether that will be covered in later posts.
 
 -e POSTGRES_DB=raw
-This creates a database called raw. We're going to use this to dump our data
-into once the pipeline gets flowing.
+This creates a database called raw. This will be used as the project grows to
+store raw incoming data.
 
 --network networkdp
 This lets docker know that this container should run on the network we created
@@ -86,16 +85,17 @@ absolute path to the pgdata folder. It's not necessary to do that however, you
 could also just write the path in yourself from whatever folder you're in.
 
 The /var/lib/postgres/data/ folder is the folder inside the container where
-postgres puts data. You can read up on that on the [docker postgres docs](https://github.com/docker-library/docs/blob/master/postgres/README.md#pgdata)
+postgres puts data. You can read up on that on the [docker postgres
+docs](https://github.com/docker-library/docs/blob/master/postgres/README.md#pgdata)
 
 postgres
-Finally, this is the name of the [image](https://hub.docker.com/_/postgres).
-This pulls the latest version of postgres though you could use one of the tags
-listed on the prior link to get a specific version. For example, you could do
-something like postgres:14 to get version 14.
+This is the name of the [postgres image](https://hub.docker.com/_/postgres).
+This causes the docker run command to pull the latest version of postgres
+though you could use one of the tags listed on the prior link to get a specific
+version. For example, you could do something like postgres:14 to get version
+14.
 
-
-If you run
+Now if you run
 ```bash
 docker ps
 ```
@@ -103,7 +103,7 @@ You should see the postgres container running. And that's that. We now have a
 container running postgresql that we can store data in later.
 
 
-Extra
+##### Extra
 If you want to connect to the container and explore the databases there, you
 can do so via psql. Run the following
 
