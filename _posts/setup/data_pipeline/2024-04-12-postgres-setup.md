@@ -7,7 +7,7 @@ tags: [setup, docker, dbt, postgres]
 
 Below is the initial structure that's been created to house the data pipeline.
 
-![initial project structure](../imgs/initial_structure.png)
+![initial project structure](/assets/img/setup/data_pipeline/2024-04-12/initial-structure.png)
 
 
 
