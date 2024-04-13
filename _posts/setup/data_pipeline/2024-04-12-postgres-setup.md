@@ -7,15 +7,10 @@ img_path: /assets/img/setup/data_pipeline/2024-04-12/
 toc: false
 ---
 
-### Prereqs:
-- [Docker installed](https://www.docker.com/products/docker-desktop/)
-- [Docker Hub account created](https://www.docker.com/products/docker-hub/)
-
-
-
-<!-- ![initial project structure](initial-structure.png){: width: 10% height: 5% } -->
-
-First, we'll create a project folder with a pgdata folder inside it:
+Assuming that you already have [Docker
+installed](https://www.docker.com/products/docker-desktop/) and a [Docker Hub
+account created](https://www.docker.com/products/docker-hub/) we'll start by
+creating a project folder with a pgdata folder inside of it:
 ```bash
 mkdir -p data_pipeline/pgdata/
 ```
