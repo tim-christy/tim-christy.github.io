@@ -8,7 +8,7 @@ img_path: /_posts/setup/data_pipeline/imgs/
 
 Below is the initial structure that's been created to house the data pipeline.
 
-![](initial-structure.png)
+![initial project structure](initial-structure.png)
 
 
 
