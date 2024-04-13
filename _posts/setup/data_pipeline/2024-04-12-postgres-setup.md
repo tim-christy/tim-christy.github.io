@@ -14,18 +14,18 @@ img_path: /assets/img/setup/data_pipeline/2024-04-12/
 
 <!-- ![initial project structure](initial-structure.png){: width: 10% height: 5% } -->
 
-First, we'll create a project folder with a pgdata folder inside it like so
+First, we'll create a project folder with a pgdata folder inside it:
 ```bash
-mkdir -p data_pipelines/pgdata/
+mkdir -p data_pipeline/pgdata/
 ```
-Above, I've named my project folder "data_pipelines". The pgdata folder will be
-used to store data from the postgres container. This is needed because
-containers do not persist data after they are stopped, so we'll lose all the
-data we put into our database unless we make a volume for it.
+Above, I've named my project folder "data_pipeline" because I'm going to turn
+this into a data pipeline project. The pgdata folder will be used to store data
+from the postgres container. This is needed because containers do not persist
+data after they are stopped, so we'll lose all the data we put into our
+database unless we make a volume for it.
 
-Quick note on the -p option in mkdir:
-The -p flag tells the mkdir command to create all folders/subfolders needed to
-make the path exist.
+Also the -p flag tells the mkdir command to create all folders/subfolders
+needed to make the path exist.
 
 Now we'll create a network that this container will use. This way when the
 project grows and we pull in more containers, they can all communicate with
@@ -117,7 +117,9 @@ for. If you omit it, you'll get an error because it'll default to root).
 Use \\? to read through the list of commands.
 
 Alternatively, you can also hook up a gui program to it (DBeaver, DBVis,
-PGAdmin4, etc) I believe through localhost:5432.
+PGAdmin4, etc) I believe through localhost:5432. If you want to view the IP of
+the container use ```docker inspect postgres``` and look under Network >
+networkdp > IPAddress.
 
 
 
